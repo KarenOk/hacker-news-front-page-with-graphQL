@@ -58,7 +58,7 @@ fetch(URL, options)
             <li class="story">
                 <span class="title"> ${stories[i].title} </span> <a class="source" href="${stories[i].url}"> (${getDomainName(stories[i].url)})
                 </a>
-                <p class="details"> ${stories[i].score} points by ${stories[i].by.id} ${timeDiff(new Date(), new Date(1000 * stories[i].time))} | hide | ${stories[i].kids.length} comments </p>
+                <p class="details"> ${stories[i].score} points by ${stories[i].by.id} ${timeDiff((Math.round((new Date()).getTime())), 1000 * stories[i].time)} | hide | ${stories[i].kids.length} comments </p>
             </li>
         `;
             storyListElem.innerHTML = storyListElem.innerHTML + htmlString;
@@ -85,26 +85,26 @@ function timeDiff(current, previous) {
     var elapsed = current - previous;
 
     if (elapsed < msPerMinute) {
-        return Math.round(elapsed / 1000) + ' seconds ago';
+        return Math.round(elapsed / 1000 - 1) + ' seconds ago';
     }
 
     else if (elapsed < msPerHour) {
-        return Math.round(elapsed / msPerMinute) + ' minutes ago';
+        return Math.round(elapsed / msPerMinute - 1) + ' minutes ago';
     }
 
     else if (elapsed < msPerDay) {
-        return Math.round(elapsed / msPerHour) + ' hours ago';
+        return Math.round(elapsed / msPerHour - 1) + ' hours ago';
     }
 
     else if (elapsed < msPerMonth) {
-        return Math.round(elapsed / msPerDay) + ' days ago';
+        return Math.round(elapsed / msPerDay - 1) + ' days ago';
     }
 
     else if (elapsed < msPerYear) {
-        return Math.round(elapsed / msPerMonth) + ' months ago';
+        return Math.round(elapsed / msPerMonth - 1) + ' months ago';
     }
 
     else {
-        return Math.round(elapsed / msPerYear) + ' years ago';
+        return Math.round(elapsed / msPerYear - 1) + ' years ago';
     }
 }
