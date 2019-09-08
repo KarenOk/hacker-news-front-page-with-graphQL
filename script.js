@@ -52,13 +52,14 @@ fetch(URL, options)
         console.log(response);
         data = response;
         for (var i = 0; i < 30; i++) {
+            console.log("kjhgf");
             let stories = data.data.topStories;
             console.log(stories);
             let htmlString = `
             <li class="story">
-                <span class="title"> ${stories[i].title} </span> <a class="source" href="${stories[i].url}"> (${getDomainName(stories[i].url)})
+                <span class="title"> ${stories[i].title} </span> <a class="source" href="${stories[i].url}"> (${ stories[i].url ? getDomainName(stories[i].url) : ""})
                 </a>
-                <p class="details"> ${stories[i].score} points by ${stories[i].by.id} ${timeDiff((Math.round((new Date()).getTime())), 1000 * stories[i].time)} | hide | ${stories[i].kids.length} comments </p>
+                <p class="details"> ${stories[i].score} points by ${stories[i].by.id} ${timeDiff((Math.round((new Date()).getTime())), 1000 * stories[i].time)} | hide  ${stories[i].kids ? `| ${stories[i].kids.length} comments` : ""}</p>
             </li>
         `;
             storyListElem.innerHTML = storyListElem.innerHTML + htmlString;
