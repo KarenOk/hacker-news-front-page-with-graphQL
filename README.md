@@ -1,16 +1,19 @@
 # Hacker News Front Page using GraphQL
 
-In this project, I make use of Ruan Martinelli's Hacker News Graphql API.
+In this project, I make use of Ruan Martinelli's Hacker News Graphql API to recreate the front page of [Hacker News](https://news.ycombinator.com/).
 
-## Steps
+## Requirements
 - Click [here](https://github.com/ruanmartinelli/hacker-news-graphql-api) to download the API server. Follow the instructions in the README file to get it running.
 
 - In the hacker-news-graphql-api folder, in the function `fetchTopStories` located in `schema.js` replace the line of code: ` .then(ids => ids.slice(0, 3))`  with ` .then(ids => ids.slice(0, 31))`. This is to ensure the API returns 30 top stories and not only 2 stories(the default).
 
+## Steps
+-  Clone this repository
+
 -  Step into this repo's directory
     `cd hacker-news-with-graphql`
 
-- Start up a server with [Python](https://www.python.org/)
+- Start up a local web server with [Python](https://www.python.org/)
     `python -m SimpleHTTP Server`
 
 - Open the port on your browser
