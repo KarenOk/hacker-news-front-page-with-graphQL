@@ -1,41 +1,25 @@
-// const URL = "./mockdata.json";
-// const URL = "https://www.graphqlhub.com/playground";
-const URL = "http://localhost:9900/graphql";
+const URL = "https://www.graphqlhub.com/graphql";
 let data;
 let storyListElem = document.querySelector(".story-list");
 
-const query = `
-query {
-topStories {
-      id
-      score
-      title
-      by
-      time
-      kids
-      url
+const query = `query{
+    hn {
+      topStories {
+        id
+        score
+        title
+        by {
+          id
+        }
+        time
+        kids{
+          id
+        }
+        url
+      }
     }
-} `;
-
-// query if I was using graphQL Hub Api
-// const query = `{
-//     hn {
-//       topStories {
-//         id
-//         score
-//         title
-//         by {
-//           id
-//         }
-//         time
-//         kids{
-//           id
-//         }
-//         url
-//       }
-//     }
-//   }
-// `;
+  }
+`;
 
 
 const options = {
@@ -52,9 +36,7 @@ fetch(URL, options)
         console.log(response);
         data = response;
         for (var i = 0; i < 30; i++) {
-            console.log("kjhgf");
-            let stories = data.data.topStories;
-            console.log(stories);
+            let stories = data.data.hn.topStories;
             let htmlString = `
             <li class="story">
                 <span class="title"> ${stories[i].title} </span> ${ stories[i].url ? `<a class="source" href="${stories[i].url}"> ( ${getDomainName(stories[i].url)})` : ""}
